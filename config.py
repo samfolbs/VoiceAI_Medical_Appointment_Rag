@@ -1,11 +1,11 @@
 """
-Configuration Module
+Configuration
 Centralized configuration for the Medical Appointment RAG system
 """
 import os
 from typing import Dict, Any
 
-# API Keys (set these as environment variables in production)
+# API Keys 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
 
