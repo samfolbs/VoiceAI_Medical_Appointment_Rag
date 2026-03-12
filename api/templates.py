@@ -202,19 +202,19 @@ def get_html_template() -> str:
 </head>
 <body>
     <div class="container">
-        <h1>🏥 Medical Appointment Assistant</h1>
+        <h1>Medical Appointment Assistant</h1>
         <p class="subtitle">AI-powered voice scheduling with medical knowledge</p>
         
         <div id="status" class="status disconnected">
-            🔴 Disconnected
+             Disconnected
         </div>
         
         <button id="startBtn" class="control-btn start-btn">
-            🎤 Start Voice Conversation
+             Start Voice Conversation
         </button>
         
         <button id="stopBtn" class="control-btn stop-btn" style="display:none;">
-            🛑 Stop Conversation
+             Stop Conversation
         </button>
         
         <div class="transcript-box" id="transcript">
@@ -263,7 +263,7 @@ def get_html_template() -> str:
         
         async function startConversation() {
             try {
-                updateStatus('🟡 Connecting...', 'listening');
+                updateStatus(' Connecting...', 'listening');
                 
                 // Request microphone permission
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -274,7 +274,7 @@ def get_html_template() -> str:
                 websocket = new WebSocket(wsUrl);
                 
                 websocket.onopen = () => {
-                    updateStatus('🟢 Connected - Listening...', 'connected');
+                    updateStatus(' Connected - Listening...', 'connected');
                     startBtn.style.display = 'none';
                     stopBtn.style.display = 'block';
                     
@@ -316,9 +316,9 @@ def get_html_template() -> str:
                     } else if (data.type === 'error') {
                         addMessage('Error: ' + data.message, 'system');
                     } else if (data.type === 'rag_status' && data.using_rag) {
-                        updateStatus('🟢 Using medical knowledge...', 'connected listening-indicator');
+                        updateStatus(' Using medical knowledge...', 'connected listening-indicator');
                         setTimeout(() => {
-                            updateStatus('🟢 Connected - Listening...', 'connected');
+                            updateStatus(' Connected - Listening...', 'connected');
                         }, 2000);
                     }
                 };
@@ -326,18 +326,18 @@ def get_html_template() -> str:
                 websocket.onerror = (error) => {
                     console.error('WebSocket error:', error);
                     addMessage('Connection error occurred', 'system');
-                    updateStatus('🔴 Error', 'disconnected');
+                    updateStatus(' Error', 'disconnected');
                 };
                 
                 websocket.onclose = () => {
-                    updateStatus('🔴 Disconnected', 'disconnected');
+                    updateStatus(' Disconnected', 'disconnected');
                     stopConversation();
                 };
                 
             } catch (error) {
                 console.error('Error starting conversation:', error);
                 addMessage('Failed to start: ' + error.message, 'system');
-                updateStatus('🔴 Failed to start', 'disconnected');
+                updateStatus(' Failed to start', 'disconnected');
             }
         }
         
@@ -354,7 +354,7 @@ def get_html_template() -> str:
             
             startBtn.style.display = 'block';
             stopBtn.style.display = 'none';
-            updateStatus('🔴 Disconnected', 'disconnected');
+            updateStatus(' Disconnected', 'disconnected');
         }
         
         function base64ToBlob(base64, mimeType) {
